@@ -1,0 +1,590 @@
+
+
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="format-detection" content="telephone=no" />
+<title>学籍/学历在线验证报告</title>
+<style>
+  /*added by huanghui 2015.04.07*/
+/** base css**/
+html, body, header, footer, nav, article, section, aside, time, code, div, p, ul, ol, li, dl, dd, dt, h1, h2, h3, a, span, strong, em, small, form, label, input, textarea {
+    margin: 0;
+    padding: 0;
+}
+ul, ol {
+    list-style: none;
+}
+h1, h2, h3, input {
+    font-size: 100%;
+}
+img {
+    border: 0;
+    vertical-align: middle;
+}
+label, input {
+    vertical-align: middle;
+}
+a, a:hover, a:visited {
+    text-decoration: none;
+    color: #36aaa4;
+    cursor: pointer;
+}
+input[type="button"], input[type="submit"], input[type="reset"] {
+	-webkit-appearance: none;
+}
+body {
+    position: relative;
+	font-size:12px;
+	font-family:normal Tahoma, Helvetica, "Microsoft Yahei", "微软雅黑", Arial, STHeiti;
+    -webkit-text-size-adjust: none;
+    overflow-x: hidden;
+    background: #fafafa;
+    color:#333;
+}
+*:focus {outline: none;}
+/** 登录页面 **/
+.login-wapper {
+    text-align: center;
+}
+.close {
+    overflow: hidden;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 22px;
+    height: 22px;
+    text-indent: -300px;
+}
+.close::before, .close::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 22px;
+    height: 1px;
+    background: #fff;
+    -webkit-transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    -ms-transform: rotateZ(45deg);
+    -o-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+.close::after {
+    -webkit-transform: rotateZ(-45deg);
+    -moz-transform: rotateZ(-45deg);
+    -ms-transform: rotateZ(-45deg);
+    -o-transform: rotateZ(-45deg);
+    transform: rotateZ(-45deg);
+}
+.logo {
+    background: #36aaa4;
+    height: 180px;
+}
+.logo img {
+    width: 229px;
+    height: 140px;
+    margin-top: 25px;
+}
+.pass-login {
+}
+.pass-login p {
+    position: relative;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #ECECEC;
+    padding-left: 12px;
+    height: 26px;
+    background: #fff;
+}
+.login-un {
+    border-top: 1px solid #ECECEC;
+}
+.login-btn {
+    padding: 20px;
+}
+.login-link {
+    margin: 0 10px 30px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.pass-login img{
+     position: absolute;
+  left: 15px;
+  top: 16px;
+  width: 20px;
+}
+.login-pw img{
+    top:12px;}
+.pass-login span {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    width: 32px;
+    height: 32px;
+    display: inline;
+    background: url(http://www.chsi.com.cn/images/wap/icon_input.png) no-repeat 0 4px;
+}
+.login-pw span {
+    background-position: 0 -32px;
+}
+.logon-yzm span {
+    background-position: 0 -66px;
+}
+.login-wjmm {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.login-ljzc {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.ui-input {
+    display: block;
+    border: none;
+    margin-left:35px;
+    width: 90%;
+ font-size: .9275rem;
+    background: white;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 28px;
+    line-height: 30px;
+}
+.ui-btn {
+    display: block;
+    width: 100%;
+    border: 1px solid #B6E2E0;
+    color: white;
+    background: #36aaa4;
+    font-size: 1.0625rem;
+    height:43px;
+    line-height: 43px;
+    text-align: center;
+    -webkit-border-radiu;3px;
+    border-radius: 3px;
+}
+.ui-btn:hover {
+    color: white;
+}
+.login-error {
+    color: rgb(245, 43, 43);
+    padding: 5px 0;
+    height: 20px;
+}
+/** 登录成功页面 **/
+.page-wrapper {
+    background: #FAFAFA;
+}
+.pw-header {
+    background: #36aaa4;
+    border-bottom: 1px solid #ccc;
+    height: 48px;
+    line-height:50px;
+    padding: 0 10px;
+    position: relative;
+    display: block;
+    text-align: left;
+    color: #fff;
+}
+.ph-title {
+    font-size: 20px;
+}
+.ph-goback {
+    display:inline-block;
+    overflow: hidden;
+    position: relative;
+    top: 4px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+}
+.ph-goback::after {
+    content: " ";
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #fff;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    -ms-transform: rotateZ(45deg);
+    -o-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+.ph-links, .ph-links:hover, .ph-links:visited {
+    margin: 6px 0;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    color: #F2F2F2;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+.ph-links img{height:20px;}
+.pw-content {
+    padding-bottom: 50px;
+}
+.pw-news {
+   margin: 15px 0;
+}
+.pw-news img{width:100%; cursor:pointer; }
+.pw-block {
+    border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+    margin: 15px 0;
+	padding:10px 15px;
+    background: #fff;
+}
+.pw-block h3 {
+    font-size: 18px;
+    padding: 6px 0;
+    font-weight: normal;
+}
+.pw-block ul {
+}
+.pw-block li {
+    font-size: 16px;
+    line-height:28px;
+    padding:8px 0;
+    border-top: 1px solid #eee;
+}
+
+.pw-block li a {
+    color: #333;
+}
+.pw-block li a:visited {
+    color: #999;
+}
+.pw-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    height: 50px;
+    background: #fff;
+}
+.pw-footer ul {
+}
+.pw-footer li {
+    float: left;
+    width:25%;
+    text-align: center;
+    height: 50px;
+}
+.pw-footer a {
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    padding-top: 5px;
+    font-size: 12px;
+}
+.pw-footer a.selected {
+    color:#36aaa4;
+}
+.pw-footer img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin:3px auto;
+}
+/**个人设置页面*/
+.pw-list {
+    position: relative;
+    background-color: #fefefe;
+}
+.pw-list a {
+    display: block;
+    position: relative;
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px;
+    color: #303030;
+    font-size: 14px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.allow-right::after {
+    content: " ";
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    width: 8px;
+    height: 8px;
+    border: #ccc solid 1px;
+    border-left: none;
+    border-bottom: none;
+    -webkit-transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    -ms-transform: rotateZ(45deg);
+    -o-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+/**用户学历信息页面 **/
+.pw-info {
+    font-size: 14px;
+    line-height:24px;
+    padding:15px;
+}
+.pw-info-t{
+    font-size:18px;
+    font-weight:700;
+    text-align:center;
+	margin:15px 0;
+}
+.pw-info h2{
+    font-size:18px;
+    text-align:left;
+}
+.pw-info h3{
+	text-align:center;
+	font-size:16px;
+}
+.pw-info-zxrz{
+	text-align:left;
+	font-weight:bold;
+	padding:10px 0;
+}
+.pw-news-back{
+    border-bottom:1px solid #ddd;
+    height:48px;
+	line-height:50px;
+    background:#36aaa4;
+}
+.pw-news-back img{
+    width:18px;
+    height:18px;
+    margin:16px 0 8px 10px;
+}
+.pw-info-img{
+    text-align:center;
+    margin:10px auto;
+}
+.pw-info-time{
+    color:#999;
+    font-size:14px;
+    padding:10px 0;
+}
+.pw-info-line{
+    height:10px;
+    border-bottom:1px solid #ddd;
+    margin-bottom:10px;
+    clear:both;
+    overflow:hidden;
+}
+.pw-info table {
+    border:0;
+}
+.pw-info th {
+    text-align: right;
+    white-space:nowrap;
+	width:100px;
+}
+.pw-info-thLeft th{text-align: left;width:200px;} 
+.tdWidth100 th{width:110px;}
+.pw-info-en th {
+    text-align: left;
+    white-space:nowrap;	
+}
+.pw-info td {
+    word-wrap: break-word;
+    word-break: normal;
+}
+.pw-info .taCenter{text-align: center;}
+.pw-info p {
+    font-size: 16px;
+    line-height: 26px;
+    padding-bottom:10px;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-align: justify;
+    text-indent:0;
+    color: #333;
+}
+.pw-info-cnt p{text-indent:2em;}
+.pw-info-cnt img{width:100%;}
+.pw-info-p{margin-top:20px;}
+.pw-info-p p{text-indent:2em;}
+.pw-info .pi-error{color:#666; text-align:center;}
+.pi-error img{width:50px;margin:20px}
+.pw-menu{padding-bottom:10px;}
+.pw-menu ul{
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+}
+.pw-menu li{
+    float: left;
+    height: 32px;
+    padding: 2px 18px;
+}
+.pw-menu li:hover{
+	color: #36aaa4;
+}
+.pw-menu a,.pw-menu a:hover,.pw-menu a:visited{color:#333;}
+.pw-menu .selected a,.pw-menu .selected a:hover,.pw-menu .selected a:visited{border-bottom: 2px solid #36aaa4;
+    color: #36aaa4;display: inline-block;height:32px;}	
+.news-lists	{padding: 10px;
+}
+.news-lists	ul{}
+.news-lists	li{  border-top: 1px solid #ccc; position:relative;padding-bottom:30px; padding-top: 10px;}
+.news-lists	li:first-child{ border-top: 0;padding-top:0;}
+.news-lists	h5{  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;}
+.news-lists p{color:#9E9D9D;}  
+.news-lists .time{position: absolute;
+  right: 2px;
+  bottom: 2px;
+  font-size:14px;}
+.pw-info-pc{
+	text-align: center;
+    border: 1px solid #ccc;
+    background: #ECECEC;
+    font-size: 16px;
+    padding: 3px;
+	text-align:center;
+}
+.pw-info-pc a,.pw-info-pc a:hover,.pw-info-pc a:visited{color: #666;}
+/*** 高度和宽度重新计算，加入媒体查询 **/
+
+html {
+    font-size : 34px;
+}
+.page-wrapper{width:100%;} 
+.pw-content{margin:0 auto;padding-bottom:0.25rem;}
+.pw-news{margin:0.375rem 0}
+.pw-block{margin:0.375rem 0;padding:0.25rem 0.375rem}
+.pw-block h3{font-size:0.45rem;padding:0.15rem 0}
+.pw-block li{font-size:0.4rem; line-height:0.7rem;padding:0.2rem 0}
+@media only screen and (min-width: 401px){
+    html {
+        font-size: 36px !important;
+    }
+}
+@media only screen and (min-width: 428px){
+    html {
+        font-size: 38px !important;
+    }
+}
+@media only screen and (min-width: 481px){
+    html {
+        font-size: 42px !important; 
+    }
+}
+@media only screen and (min-width: 569px){
+    html {
+        font-size: 46px !important; 
+    }
+}
+@media only screen and (min-width: 641px){
+    html {
+        font-size: 48px !important; 
+    }
+	.pw-content{width:13.5rem;}
+}
+  
+</style>
+</head>
+
+<body>
+<div class='page-wrapper'>
+  <div class='pw-content'>
+    <div class='pw-info'>
+      <div class="pw-info-t">教育部学历证书电子注册备案表</div>
+      <div class="pw-info-img"><img height="100" class="cn_photo1_img" id="xueliPhoto" src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEBLAEsAAD/4QEmRXhpZgAATU0AKgAAAAgABwESAAMAAAABAAEAAAEaAAUAAAABAAAAYgEbAAUAAAABAAAAagEoAAMAAAABAAIAAAExAAIAAAAcAAAAcgEyAAIAAAAUAAAAjodpAAQAAAABAAAAogAAAAAAAAEsAAAAAQAAASwAAAABQWRvYmUgUGhvdG9zaG9wIENTMyBXaW5kb3dzADIwMTY6MDY6MTcgMTg6MDM6NDQAAAiQAAAHAAAABDAyMjGQBAACAAAAFAAAAQiRAQAHAAAABAECAwCgAAAHAAAABDAxMDCgAQADAAAAAQABAACgAgAEAAAAAQAAAZ2gAwAEAAAAAQAAAk+kBgADAAAAAQAAAAAAAAAAMjAxNjowNjoxNyAxODowMToxMwAAAP/hCcJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+DQo8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJYTVAgQ29yZSA1LjQuMCI+DQoJPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4NCgkJPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXA6Q3JlYXRlRGF0ZT0iMjAxNi0wNi0xN1QxODowMToxMyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1MzIFdpbmRvd3MiIHhtcDpNb2RpZnlEYXRlPSIyMDE2LTA2LTE3VDE4OjAzOjQ0Ii8+DQoJPC9yZGY6UkRGPg0KPC94OnhtcG1ldGE+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAg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" /></div>
+      <table cellspacing="0">
+          <tr>
+            <th width='90'>姓名：</th>
+            <td>田剑</td>
+            </tr>
+          <tr>
+            <th>性别：</th>
+            <td>男</td>
+          </tr>
+          <tr>
+            <th>出生日期：</th>
+            <td>1985年7月28日</td>
+          </tr>
+        </table>
+        <div class="pw-info-line">&nbsp;</div>
+        <table cellspacing="0">
+          <tr>
+            <th width="90">入学时间：</th>
+            <td>2005年9月1日</td>
+          </tr>
+          <tr>
+            <th>毕业时间：</th>
+            <td>2009年7月15日</td>
+          </tr>
+          <tr>
+            <th>学历类型：</th>
+            <td>普通</td>
+          </tr>
+          <tr>
+            <th>学历层次：</th>
+            <td>本科</td>
+          </tr>
+          <tr>
+            <th>毕业院校：</th>
+            <td>长春建筑学院</td>
+          </tr>
+          <tr>
+            <th>院校所在地：</th>
+            <td>吉林省</td>
+          </tr>
+          <tr>
+            <th>专业名称：</th>
+            <td>工程造价</td>
+          </tr>
+          <tr>
+            <th>学习形式：</th>
+            <td>普通全日制</td>
+          </tr>
+          <tr>
+            <th>证书编号：</th>
+            <td><span>1360 5120 0906 0421 57</span></td>
+          </tr>
+          <tr>
+            <th>毕结业结论：</th>
+            <td>毕业</td>
+          </tr>
+        </table>
+        <div class="pw-info-line">&nbsp;</div>
+        <table cellspacing="0">
+          <tr>
+            <th width="90">在线验证码：</th>
+            <td>5298 5421 0843</td>
+          </tr>
+          <tr>
+            <th>制表日期：</th>
+            <td>2016年6月16日</td>
+          </tr>
+          <tr>
+            <th>验证期至：</th>
+            <td>2016年12月12日</td>
+          </tr>
+        </table>
+        <div class='pw-info-pc'><a href="javascript:;">电脑版</a></div> 
+    </div>
+  </div>
+</div>
+</body>
+</html>
